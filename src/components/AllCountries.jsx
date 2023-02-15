@@ -13,7 +13,7 @@ const AllCountries = () => {
 	const { error, data, isLoading, isFetching } = useQuery("countries", fetchAllCountries);
 
 	return (
-		<div className='w-full grid grid-cols-4 grid-rows-2 gap-4 bg-gray-800 pt-8'>
+		<div className='w-full grid grid-cols-4 gap-[4rem] bg-gray-800 pt-8 px-8'>
 			{data?.map((country, idx) => (
 				<CountryCard key={idx} country={country} />
 			))}
