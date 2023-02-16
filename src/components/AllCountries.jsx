@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 import CountryCard from "./CountryCard";
+import { Link } from "react-router-dom";
 
 const AllCountries = () => {
 	const fetchAllCountries = async () => {
@@ -24,7 +25,9 @@ const AllCountries = () => {
 				{"<"}
 			</button>
 			{data?.slice((page - 1) * 4, page * 4)?.map((country, idx) => (
-				<CountryCard key={idx} country={country} />
+				<Link key={idx} to={`/${country.name.common}`}>
+					<CountryCard country={country} />
+				</Link>
 			))}
 			<button
 				className='text-white text-6xl font-[800] disabled:text-gray-600'
