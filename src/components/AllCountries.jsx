@@ -23,7 +23,7 @@ const AllCountries = () => {
 			>
 				{"<"}
 			</button>
-			{data.slice((page - 1) * 4, page * 4)?.map((country, idx) => (
+			{data?.slice((page - 1) * 4, page * 4)?.map((country, idx) => (
 				<CountryCard key={idx} country={country} />
 			))}
 			<button
