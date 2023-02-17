@@ -19,7 +19,10 @@ const AllCountries = () => {
 	const { error, data, isLoading, isFetching } = useQuery("countries", fetchAllCountries);
 
 	return (
-		<div className='w-full h-full flex flex-col items-center gap-4 bg-gray-800 p-8 relative'>
+		<div
+			className='w-full h-full flex flex-col items-center gap-4 bg-gray-800 p-8 relative'
+			onClick={() => setShowFilter(false)}
+		>
 			<div className='w-full px-14 flex justify-between items-center'>
 				<div>
 					<input
@@ -33,7 +36,10 @@ const AllCountries = () => {
 				<div className='relative'>
 					<button
 						className='p-4 rounded-md bg-gray-700 text-white'
-						onClick={() => setShowFilter((prev) => !prev)}
+						onClick={(e) => {
+							e.stopPropagation();
+							setShowFilter((prev) => !prev);
+						}}
 					>
 						Select Region
 					</button>
@@ -42,6 +48,7 @@ const AllCountries = () => {
 							<ul
 								className='cursor-pointer'
 								onClick={(e) => {
+									e.stopPropagation();
 									if (e.target.classList.contains("filterOption"))
 										setFilter(e.target.innerText.toLowerCase());
 								}}
@@ -83,7 +90,7 @@ const AllCountries = () => {
 						else return country.region.toLowerCase() === filter;
 					})
 					.slice((page - 1) * 4, page * 4)
-					?.map((country, idx) => (
+					.map((country, idx) => (
 						<Link key={idx} to={`/${country.name.common}`}>
 							<CountryCard country={country} />
 						</Link>
