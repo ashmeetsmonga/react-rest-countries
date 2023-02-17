@@ -89,6 +89,7 @@ const AllCountries = () => {
 						if (filter === "all") return true;
 						else return country.region.toLowerCase() === filter;
 					})
+					.filter((country) => country.name.common.toLowerCase().includes(search.toLowerCase()))
 					.slice((page - 1) * 4, page * 4)
 					.map((country, idx) => (
 						<Link key={idx} to={`/${country.name.common}`}>

@@ -16,15 +16,14 @@ const SingleCountry = () => {
 
 	let { name } = useParams();
 
-	const { isLoading, data, isFetching } = useQuery(name, fetchCountry);
+	const { isLoading, data } = useQuery(name, fetchCountry);
 	const navigate = useNavigate();
-	if (isLoading || isFetching)
+	if (isLoading)
 		return (
 			<div className='w-full h-full flex justify-center items-center bg-gray-800 font-bold text-3xl text-white'>
 				Loading...
 			</div>
 		);
-	console.log(data);
 	return (
 		<div className='w-full h-full flex justify-center items-center bg-gray-800 relative'>
 			<button
